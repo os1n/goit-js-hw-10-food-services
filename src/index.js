@@ -8,14 +8,18 @@ const Theme = {
   DARK: 'dark-theme',
 };
 
-let currentTheme = localStorage.getItem(Theme); // Get the latest state of theme and set it to current
+let currentTheme;
+// Get the latest state of theme and set it to current
+if (localStorage.getItem(Theme)) {
+  currentTheme = localStorage.getItem(Theme);
+} else {currentTheme = Theme.LIGHT};
+console.log('Current theme on entry =' ,currentTheme);
 bodyRef.classList.add(currentTheme);
-//console.log(localStorage.getItem(Theme));
 
 // set toggle switch to dark if it was dark
 if (currentTheme === Theme.DARK) {
   checkBoxRef.checked = true;
-}
+} 
 
 const switchHandler = event => {
   console.dir(event.currentTarget.checked);
